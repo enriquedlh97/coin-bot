@@ -14,6 +14,23 @@ slackeventsapi = "^3.0.1"
 Flask = "^2.2.3"
 
 
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+isort = "^5.12.0"
+pre-commit = "^3.2.1"
+mypy = "^1.1.1"
+
+[tool.black]
+line-length = 79
+exclude = "site/"
+
+[tool.isort]
+profile = "black"
+line_length = 79
+
+[tool.pydocstyle]
+convention = "google"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
