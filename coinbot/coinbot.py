@@ -9,11 +9,11 @@ class CoinBot:
     channel: str
     # Default text for the message
     # TODO: Make COIN_BLOCK a typed dict, custom object
-    COIN_BLOCK: dict[str, str | dict[str, str | tuple[str]]] = {
+    COIN_BLOCK: dict[str, str | dict[str, str]] = {
         "type": "section",
         "text": {
             "type": "mrkdwn",
-            "text": ("Sure! Flipping a coin....\n\n"),
+            "text": "Sure! Flipping a coin....\n\n",
         },
     }
 
@@ -41,13 +41,7 @@ class CoinBot:
 
     def get_message_payload(
         self,
-    ) -> dict[
-        str,
-        str
-        | list[
-            dict[str, Union[str, dict[str, str | tuple[str]]]],
-        ],
-    ]:
+    ) -> dict[str, str | list[dict[str, Union[str, dict[str, str]]]]]:
         """_summary_.
 
         :return:
@@ -56,6 +50,6 @@ class CoinBot:
             "channel": self.channel,
             "blocks": [
                 self.COIN_BLOCK,
-                *self._flip_coin(),  # type: ignore
+                self._flip_coin(),  # type: ignore
             ],
         }

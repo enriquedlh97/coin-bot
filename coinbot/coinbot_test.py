@@ -10,7 +10,7 @@ from coinbot import CoinBot
 slack_web_client: WebClient = WebClient(token=os.environ.get("SLACK_TOKEN"))
 
 # Get a new CoinBot
-coin_bot: CoinBot = CoinBot("#bot-dev")
+coin_bot: CoinBot = CoinBot("#bot-dev")  # Channel name
 
 # Get the onboarding message payload
 message: dict[
