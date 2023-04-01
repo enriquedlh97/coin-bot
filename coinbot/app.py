@@ -1,8 +1,8 @@
 """Flask App for Coin Bot."""
 
 import logging
-import os
 
+from configs import config
 from flask import Flask
 from slack import WebClient
 from slackeventsapi import SlackEventAdapter
@@ -14,11 +14,11 @@ app = Flask(__name__)
 # Create an events adapter and register it to an endpoint in the slack
 # app for event injestion.
 slack_events_adapter = SlackEventAdapter(
-    os.environ.get("SLACK_EVENTS_TOKEN"), "/slack/events", app
+    config.SLACK_EVENTS_TOKEN, "/slack/events", app
 )
 
 # Initialize a Web API client
-slack_web_client = WebClient(token=os.environ.get("SLACK_TOKEN"))
+slack_web_client = WebClient(token=config.SLACK_TOKEN)
 
 
 def flip_coin(channel):
@@ -75,4 +75,4 @@ if __name__ == "__main__":
     # Run our app on our externally facing IP address on port 3000
     # instead of running it on localhost, which is traditional for
     # development.
-    app.run(host="0.0.0.0", port=3000)
+    app.run(host=config.HOST, port=config.PORT)
